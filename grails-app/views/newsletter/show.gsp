@@ -49,13 +49,13 @@
             </li>
         </g:if>
 
-        <g:if test="${newsletterInstance?.receivers}">
+        <g:if test="${newsletterInstance?.users}">
             <li class="fieldcontain">
-                <span id="receivers-label" class="property-label"><g:message code="newsletter.receivers.label"
-                                                                             default="Receivers"/></span>
+                <span id="users-label" class="property-label"><g:message code="newsletter.users.label"
+                                                                             default="Users"/></span>
 
-                <g:each in="${newsletterInstance.receivers}" var="r">
-                    <span class="property-value" aria-labelledby="receivers-label"><g:link controller="receiver"
+                <g:each in="${newsletterInstance.users}" var="r">
+                    <span class="property-value" aria-labelledby="users-label"><g:link controller="user"
                                                                                            action="show"
                                                                                            id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
                 </g:each>

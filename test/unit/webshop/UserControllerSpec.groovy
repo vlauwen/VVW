@@ -5,9 +5,9 @@ package webshop
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ReceiverController)
-@Mock(Receiver)
-class ReceiverControllerSpec extends Specification {
+@TestFor(UserController)
+@Mock(User)
+class UserControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class ReceiverControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.receiverInstanceList
-            model.receiverInstanceCount == 0
+            !model.userInstanceList
+            model.userInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class ReceiverControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.receiverInstance!= null
+            model.userInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class ReceiverControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def receiver = new Receiver()
-            receiver.validate()
-            controller.save(receiver)
+            def user = new User()
+            user.validate()
+            controller.save(user)
 
         then:"The create view is rendered again with the correct model"
-            model.receiverInstance!= null
+            model.userInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            receiver = new Receiver(params)
+            user = new User(params)
 
-            controller.save(receiver)
+            controller.save(user)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/receiver/show/1'
+            response.redirectedUrl == '/user/show/1'
             controller.flash.message != null
-            Receiver.count() == 1
+            User.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class ReceiverControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def receiver = new Receiver(params)
-            controller.show(receiver)
+            def user = new User(params)
+            controller.show(user)
 
         then:"A model is populated containing the domain instance"
-            model.receiverInstance == receiver
+            model.userInstance == user
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class ReceiverControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def receiver = new Receiver(params)
-            controller.edit(receiver)
+            def user = new User(params)
+            controller.edit(user)
 
         then:"A model is populated containing the domain instance"
-            model.receiverInstance == receiver
+            model.userInstance == user
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class ReceiverControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/receiver/index'
+            response.redirectedUrl == '/user/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def receiver = new Receiver()
-            receiver.validate()
-            controller.update(receiver)
+            def user = new User()
+            user.validate()
+            controller.update(user)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.receiverInstance == receiver
+            model.userInstance == user
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            receiver = new Receiver(params).save(flush: true)
-            controller.update(receiver)
+            user = new User(params).save(flush: true)
+            controller.update(user)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/receiver/show/$receiver.id"
+            response.redirectedUrl == "/user/show/$user.id"
             flash.message != null
     }
 
@@ -130,23 +130,23 @@ class ReceiverControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/receiver/index'
+            response.redirectedUrl == '/user/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def receiver = new Receiver(params).save(flush: true)
+            def user = new User(params).save(flush: true)
 
         then:"It exists"
-            Receiver.count() == 1
+            User.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(receiver)
+            controller.delete(user)
 
         then:"The instance is deleted"
-            Receiver.count() == 0
-            response.redirectedUrl == '/receiver/index'
+            User.count() == 0
+            response.redirectedUrl == '/user/index'
             flash.message != null
     }
 }

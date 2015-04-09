@@ -9,13 +9,13 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: newsletterInstance, field: 'receivers', 'error')} ">
-    <label for="receivers">
-        <g:message code="newsletter.receivers.label" default="Receivers"/>
+<div class="fieldcontain ${hasErrors(bean: newsletterInstance, field: 'users', 'error')} ">
+    <label for="users">
+        <g:message code="newsletter.users.label" default="Users"/>
 
     </label>
-    <g:select name="receivers" from="${webshop.Receiver.findAll{newsletter == true}}" multiple="multiple" optionKey="id" size="5"
-              value="${newsletterInstance?.receivers*.id}" class="many-to-many"/>
+    <g:select name="users" from="${webshop.User.findAll{newsletter == true}}" multiple="multiple" optionKey="id" size="5"
+              value="${newsletterInstance?.users*.id}" class="many-to-many"/>
 
 </div>
 

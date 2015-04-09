@@ -7,8 +7,8 @@ class UrlMappings {
             }
         }
 
-        "/receiver/unsubscribe/$id"{
-            controller = 'Receiver'
+        "/user/unsubscribe/$id"{
+            controller = 'User'
             action = 'unsubscribe'
         }
 

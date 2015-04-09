@@ -34,13 +34,13 @@ class NewsletterController {
             return
         }
 
-        for (Receiver r : newsletterInstance.receivers){
-            System.out.println(r.id);
-            System.out.println(r.getId());
+        for (User u : newsletterInstance.users){
+            System.out.println(u.id);
+            System.out.println(u.getId());
             sendMail {
-                to r.email
+                to u.email
                 subject newsletterInstance.title
-                html '<p>' + newsletterInstance.content + '</p> <a href="http://localhost:8080/Webshop/receiver/unsubscribe/' + r.id + '">Uitschrijven nieuwsbrief</a>'
+                html '<p>' + newsletterInstance.content + '</p> <a href="http://localhost:8080/Webshop/user/unsubscribe/' + u.id + '">Uitschrijven nieuwsbrief</a>'
         }
 
         }

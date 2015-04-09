@@ -14,10 +14,9 @@ function foo(arg1, arg2, arg3, arg4, arg5, arg6) {
         var d;
 
         function test() {
-                
-        };
 
-        //test();
+}
+    //test();
 
         (function moo(first, second){
                 console.log(first);
